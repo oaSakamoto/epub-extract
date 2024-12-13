@@ -8,5 +8,11 @@
   },
   "keywords": [],
   "author": "Olimpio Almeida Sakamoto",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.10.2",
+    "dts-bundle-generator": "^9.5.1",
+    "typescript": "^5.7.2"
+  }
 }

@@ -1,18 +1,37 @@
 {
   "name": "epub-extract",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "A library for parse epub document",
+  "main": "./dist/epub-extract.cjs.js",
+  "module": "./dist/epub-extract.js",
+  "types": "./dist/epub-extract.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/epub-extract.js"
+    },
+    "./dist/": {
+      "import": "./dist/"
+    }
   },
-  "keywords": [],
+  "scripts": {
+    "dev": "vite --host",
+    "build": "rimraf .dist/**/* && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
   "author": "Olimpio Almeida Sakamoto",
   "license": "MIT",
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/ui": "^2.1.8",
     "dts-bundle-generator": "^9.5.1",
-    "typescript": "^5.7.2"
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
   }
 }

@@ -2,7 +2,7 @@ const config = {
   entries: [
     {
       filePath: "./src/index.ts",
-      outFile: "./dist/epub-extract",
+      outFile: "./dist/epub-extract.d.ts",
       noCheck: false,
     },
   ],

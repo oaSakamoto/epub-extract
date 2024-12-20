@@ -1,27 +1,27 @@
 /// <reference types="vitest/config"
-import { defineConfig } from "vitest/config"
-import path from "path"
-import packageJson from "./package.json"
+import { defineConfig } from "vitest/config";
+import path from "path";
+import packageJson from "./package.json";
 
 const getPackageName = () => {
-  return packageJson.name
-}
+  return packageJson.name;
+};
 
 const getPackageNameCamelCase = () => {
   try {
-    return getPackageName().replace(/-./g, char => char[1].toUpperCase())
+    return getPackageName().replace(/-./g, (char) => char[1].toUpperCase());
   } catch (err) {
-    throw new Error("Name property in package.json is missing")
+    throw new Error("Name property in package.json is missing");
   }
-}
+};
 
 const fileName = {
   es: `${getPackageName()}.js`,
   iife: `${getPackageName()}.iife.js`,
-  cjs: `${getPackageName()}.cjs.js`
-}
+  cjs: `${getPackageName()}.cjs.js`,
+};
 
-const formats = Object.keys(fileName) as Array<keyof typeof fileName>
+const formats = Object.keys(fileName) as Array<keyof typeof fileName>;
 
 export default defineConfig({
   base: "./",
@@ -31,7 +31,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: getPackageNameCamelCase(),
       formats,
-      fileName: format => fileName[format],
+      fileName: (format) => fileName[format],
     },
   },
   test: {

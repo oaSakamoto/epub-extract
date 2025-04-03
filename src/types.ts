@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { ZipReader } from "@zip.js/zip.js";
 
 export interface DecompressEpub {

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf .dist/**/* && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
     "test": "vitest",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --coverage.enabled=true",
     "test:browser": "vitest --browser",
     "test:coverage": "vitest --coverage"
   },

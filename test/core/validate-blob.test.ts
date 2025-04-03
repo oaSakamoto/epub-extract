@@ -1,4 +1,4 @@
-import { epubBlobIsValid } from "@/core/validate-epub-blob";
+import { epubBlobIsValid } from "@/core/validate-blob";
 import { describe, expect, it } from "vitest";
 
 describe("epubBlobIsValid", () => {

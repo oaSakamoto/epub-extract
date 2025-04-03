@@ -8,29 +8,29 @@ import {
 export const decompressEpubAdapter: DecompressEpub = {
   async decompressEpub(epub: Blob): Promise<DecompressEpubResult> {
     const createZipReaderResult = createZipReader(epub);
-    if (!createZipReaderResult.sucess) {
+    if (!createZipReaderResult.success) {
       const { error, errorMessage } = createZipReaderResult;
-      return { sucess: false, errorMessage: errorMessage, error: error };
+      return { success: false, errorMessage: errorMessage, error: error };
     }
     const { zipReader } = createZipReaderResult;
 
     const createEpubResourcesMapResult =
       await createEpubResourcesMap(zipReader);
 
-    if (!createEpubResourcesMapResult.sucess) {
+    if (!createEpubResourcesMapResult.success) {
       const { error, errorMessage } = createEpubResourcesMapResult;
-      return { sucess: false, errorMessage: errorMessage, error: error };
+      return { success: false, errorMessage: errorMessage, error: error };
     }
 
     const closeZipReaderResult = await closeZipReader(
       createZipReaderResult.zipReader,
     );
-    if (!closeZipReaderResult.sucess) {
+    if (!closeZipReaderResult.success) {
       const { error, errorMessage } = closeZipReaderResult;
-      return { sucess: false, errorMessage: errorMessage, error: error };
+      return { success: false, errorMessage: errorMessage, error: error };
     }
     return {
-      sucess: true,
+      success: true,
       epubResourcesMap: createEpubResourcesMapResult.epubResourcesMap,
     };
   },

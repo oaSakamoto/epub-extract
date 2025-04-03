@@ -10,10 +10,10 @@ export const createZipReader = (epub: Blob): CreateZipReaderResult => {
   try {
     const blobReader = new BlobReader(epub);
     const zipReader = new ZipReader(blobReader);
-    return { sucess: true, zipReader: zipReader };
+    return { success: true, zipReader: zipReader };
   } catch (error) {
     return {
-      sucess: false,
+      success: false,
       errorMessage: "Failed to create ZIP Reader",
       error: error as Error,
     };
@@ -25,10 +25,10 @@ export const closeZipReader = async (
 ): Promise<CloseZipReaderResult> => {
   try {
     await zipReader.close();
-    return { sucess: true };
+    return { success: true };
   } catch (error) {
     return {
-      sucess: false,
+      success: false,
       errorMessage: "Error closing Zip Reader",
       error: error as Error,
     };
@@ -47,10 +47,10 @@ export const createEpubResourcesMap = async (
         epubResourcesMap.set(entry.filename, blob);
       }
     }
-    return { sucess: true, epubResourcesMap };
+    return { success: true, epubResourcesMap };
   } catch (error) {
     return {
-      sucess: false,
+      success: false,
       errorMessage: "Failed to create Epub Resources Map",
       error: error as Error,
     };

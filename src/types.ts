@@ -11,21 +11,25 @@ export type ValidationEpubResult =
   | { isValid: false; errorMessage: string };
 
 export type OperationFailure = {
-  sucess: false;
+  success: false;
   errorMessage: string;
   error: Error;
 };
 
 export type DecompressEpubResult =
-  | { sucess: true; epubResourcesMap: EpubResourcesMap }
+  | { success: true; epubResourcesMap: EpubResourcesMap }
   | OperationFailure;
 
 export type CreateZipReaderResult =
-  | { sucess: true; zipReader: ZipReader<Blob> }
+  | { success: true; zipReader: ZipReader<Blob> }
   | OperationFailure;
 
-export type CloseZipReaderResult = { sucess: true } | OperationFailure;
+export type CloseZipReaderResult = { success: true } | OperationFailure;
 
 export type CreateEpubResourceMapResult =
-  | { sucess: true; epubResourcesMap: EpubResourcesMap }
+  | { success: true; epubResourcesMap: EpubResourcesMap }
+  | OperationFailure;
+
+export type ParserTextFileResult =
+  | { success: true; document: Document }
   | OperationFailure;

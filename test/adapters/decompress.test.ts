@@ -10,16 +10,16 @@ describe("decompressAdapter", async () => {
     });
     it("should successfully creates a ZipReader instance", () => {
       const createZipReaderResult = createZipReader(mockBlob);
-      expect(createZipReaderResult.sucess).toBe(true);
-      if (createZipReaderResult.sucess) {
+      expect(createZipReaderResult.success).toBe(true);
+      if (createZipReaderResult.success) {
         expect(createZipReaderResult.zipReader).toBeInstanceOf(ZipReader);
       }
     });
     it("should return a OperationFailure if fails to create a ZipReader instance ", () => {
       const createZipReaderResult = createZipReader(null as unknown as Blob);
-      const { sucess } = createZipReaderResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = createZipReaderResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = createZipReaderResult;
         expect(errorMessage).toBe("Failed to create ZIP Reader");
       }
@@ -35,13 +35,13 @@ describe("decompressAdapter", async () => {
     it("should successfully closes a ZipReader instance", async () => {
       const createZipReaderResult = createZipReader(mockBlob);
       let zipReader: null | ZipReader<Blob> = null;
-      if (createZipReaderResult.sucess) {
+      if (createZipReaderResult.success) {
         zipReader = createZipReaderResult.zipReader;
       }
       const closeZipReaderResult = await closeZipReader(
         zipReader as ZipReader<Blob>,
       );
-      expect(closeZipReaderResult.sucess).toBe(true);
+      expect(closeZipReaderResult.success).toBe(true);
     });
     it("should return a OperationFailure if fails to close a ZipReader instance ", async () => {
       const zipReader = {
@@ -53,9 +53,9 @@ describe("decompressAdapter", async () => {
       const closeZipReaderResult = await closeZipReader(
         zipReader as unknown as ZipReader<Blob>,
       );
-      const { sucess } = closeZipReaderResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = closeZipReaderResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = closeZipReaderResult;
         expect(errorMessage).toBe("Error closing Zip Reader");
       }
@@ -104,8 +104,8 @@ describe("decompressAdapter", async () => {
       const createEpubResourcesMapResult = await createEpubResourcesMap(
         zipReader as unknown as ZipReader<Blob>,
       );
-      const { sucess } = createEpubResourcesMapResult;
-      if (sucess) {
+      const { success } = createEpubResourcesMapResult;
+      if (success) {
         const { epubResourcesMap } = createEpubResourcesMapResult;
         expect(epubResourcesMap).toEqual(expectedResult);
       }
@@ -114,9 +114,9 @@ describe("decompressAdapter", async () => {
       const createEpubResourcesMapResult = await createEpubResourcesMap(
         null as unknown as ZipReader<Blob>,
       );
-      const { sucess } = createEpubResourcesMapResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = createEpubResourcesMapResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = createEpubResourcesMapResult;
         expect(errorMessage).toBe("Failed to create Epub Resources Map");
       }
@@ -137,9 +137,9 @@ describe("decompressAdapter", async () => {
       const { decompressEpubAdapter } = await import("@/adapters/decompress");
       const decompressEpubResult =
         await decompressEpubAdapter.decompressEpub(epubBlob);
-      const { sucess } = decompressEpubResult;
-      expect(sucess).toBe(true);
-      if (sucess) {
+      const { success } = decompressEpubResult;
+      expect(success).toBe(true);
+      if (success) {
         const { epubResourcesMap } = decompressEpubResult;
         expect(epubResourcesMap.has("META-INF/container.xml")).toBe(true);
         expect(epubResourcesMap.has("mimetype")).toBe(true);
@@ -171,9 +171,9 @@ describe("decompressAdapter", async () => {
         new Blob([""]),
       );
       expect(createZipReader).toHaveBeenCalled();
-      const { sucess } = decompressEpubResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = decompressEpubResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = decompressEpubResult;
         expect(errorMessage).toBe("Failed to create ZIP Reader");
       }
@@ -205,9 +205,9 @@ describe("decompressAdapter", async () => {
       const decompressEpubResult =
         await decompressEpubAdapter.decompressEpub(epubBlob);
       expect(closeZipReader).toHaveBeenCalled();
-      const { sucess } = decompressEpubResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = decompressEpubResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = decompressEpubResult;
         expect(errorMessage).toBe("Error closing Zip Reader");
       }
@@ -237,9 +237,9 @@ describe("decompressAdapter", async () => {
         new Blob([""]),
       );
       expect(createEpubResourcesMap).toHaveBeenCalled();
-      const { sucess } = decompressEpubResult;
-      expect(sucess).toBe(false);
-      if (!sucess) {
+      const { success } = decompressEpubResult;
+      expect(success).toBe(false);
+      if (!success) {
         const { errorMessage } = decompressEpubResult;
         expect(errorMessage).toBe("Failed to create Epub Resources Map");
       }

@@ -38,6 +38,7 @@ export default defineConfig({
   test: {
     globals: true,
     watch: true,
+    environment: "happy-dom",
     typecheck: {
       tsconfig: path.resolve(__dirname, "tsconfig.test.json"),
     },

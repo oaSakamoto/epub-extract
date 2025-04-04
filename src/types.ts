@@ -5,6 +5,8 @@ export interface DecompressEpub {
   decompressEpub(epub: Blob): Promise<DecompressEpubResult>;
 }
 
+export type ContentInfo = { fullPath: string; mediaType: string };
+
 export type EpubResourcesMap = Map<string, Blob>;
 
 export type ValidationEpubResult =
@@ -34,3 +36,7 @@ export type CreateEpubResourceMapResult =
 export type ParserTextFileResult =
   | { success: true; document: Document }
   | OperationFailure;
+
+export type ProcessContainerResult =
+  | { success: true; content: ContentInfo }
+  | { success: false; errorMessage: string };
